@@ -21,6 +21,6 @@ public class FlightManager {
     }
 
     public int bagCapacityLeft() {
-
+        return this.maxBagWeight() - this.totalBagWeight();
     }
 }

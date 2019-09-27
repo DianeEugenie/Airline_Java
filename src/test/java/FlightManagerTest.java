@@ -65,6 +65,17 @@ public class FlightManagerTest {
     }
 
     @Test
-    publi
+    public void canCheckBagWeightLeft(){
+        //Given we have a flight
+        assertNotNull(flight);
+        //AND there are two passengers booked into the flight
+        flight.addPassenger(passenger1);
+        flight.addPassenger(passenger2);
+        //AND each bag is 25 kgs
+        //When we check total bag allowance left
+        int totalBagWeightLeft = flightManager.bagCapacityLeft();
+        //Then totalBagWeight should be 4 x 25 = 100
+        assertEquals(150, totalBagWeightLeft);
+    }
 
 }
