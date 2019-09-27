@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 public class Flight {
@@ -11,6 +12,7 @@ public class Flight {
    // private String departureTime;
     private Date departureTime;
     private ArrayList<Passenger> passengers;
+    private ArrayList<Integer> seatNumbers;
 
     public Flight(Plane plane, String flightNumber, Airport departure, Airport destination, Date departureTime){
         this.plane = plane;
@@ -20,6 +22,7 @@ public class Flight {
         this.departureTime = departureTime;
        // this.departureTime = departureTime;
         this.passengers = new ArrayList<Passenger>();
+        this.seatNumbers = new ArrayList<Integer>();
     }
 
     public int passengerCount() {
@@ -27,12 +30,20 @@ public class Flight {
     }
 
     public void addPassenger(Passenger passenger) {
+        if (this.passengerCount() == 0) {
+            this.generateSeatNumbers();
+        }
+
         if (this.passengerCount() < plane.getTotalCapacity()) {
             this.passengers.add(passenger);
             passenger.setFlightNumber(this.flightNumber);
+
+            Collections.shuffle(this.seatNumbers);
+
+            Integer seatNumber = this.removeSeatNumber();
+            passenger.allocateSeatNumber(seatNumber);
         }
     }
-
 
 
     public int checkAvailableSeats() {
@@ -58,6 +69,35 @@ public class Flight {
         return totalBags;
 
     }
+
+    public int seatNumberCount(){
+        return this.seatNumbers.size();
+    }
+
+    public void generateSeatNumbers() {
+        Integer seatNumber = 1;
+
+        for (int i = 0; i < this.maxCapacityForFlight() ; i++) {
+            this.seatNumbers.add(seatNumber);
+            seatNumber++;
+        }
+
+    }
+
+    public Integer removeSeatNumber() {
+        Integer seatNumber = 0;
+
+        if (this.seatNumberCount() > 0) {
+            seatNumber = this.seatNumbers.remove(0);
+        }
+
+        return seatNumber;
+    }
+
+
+
+
+
 
 
 
@@ -113,15 +153,9 @@ public class Flight {
 
 
     public ArrayList<Integer> getSeatNumbers() {
-        ArrayList<Integer> seatNumbers = new ArrayList<Integer>();
-        Integer seatNumber = 1;
-
-        for (int i = 0; i < this.maxCapacityForFlight() ; i++) {
-            seatNumbers.add(seatNumber);
-            seatNumber++;
-        }
-
         return seatNumbers;
-
     }
+
+
+
 }

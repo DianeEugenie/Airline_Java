@@ -179,34 +179,72 @@ public class FlightTest {
         //Given we have  a flight
         assertNotNull(flight2);
         //When we generate the seat number array
-        ArrayList<Integer> seatNumbers = flight2.getSeatNumbers();
+        flight2.generateSeatNumbers();
         //Then we should have an array of size 10
-        int total = 10;
-        assertEquals(total, seatNumbers.size());
+        assertEquals(10, flight2.seatNumberCount());
         //And it should start at 1
         Integer firstSeat = 1;
-        assertEquals(firstSeat, seatNumbers.get(0));
+        assertEquals(firstSeat, flight2.getSeatNumbers().get(0));
         //AND end at 10
         Integer lastSeat = 10;
-        assertEquals(lastSeat, seatNumbers.get(9));
+        assertEquals(lastSeat, flight2.getSeatNumbers().get(9));
 
     }
 
-//    @Test
-//    public void canAddRandomSeatNumberToPassenger(){
-//        //Given we have  a flight
-//        assertNotNull(flight2);
-//        //AND we have 3 passengers in the flight
-//        assertNotNull(passenger1);
-//        assertNotNull(passenger2);
-//        assertNotNull(passenger3);
-//        //When we add a seat to a passenger
-//        flight.addPassenger(passenger1);
-//        flight.addPassenger(passenger2);
-//        flight.addPassenger(passenger3);
-//        //Then the passenger should have a seat
-//        assertNotEquals(1, passenger1.getSeatNumber());
-    //    assertNotEquals(0, passenger1.getSeatNumber());
-//    }
+    @Test
+    public void canAddSeatNumberToPassenger(){
+        //Given we have  a flight
+        assertNotNull(flight2);
+        //AND we have a passenger in the flight
+        assertNotNull(passenger1);
+        //When we add a seat to a passenger
+        flight2.addPassenger(passenger1);
+        //Then we should have 9 seats left
+        assertEquals(9, flight2.seatNumberCount());
+        assertEquals(9, flight2.checkAvailableSeats());
+        //AND passenger should not have passenger seat 0
+        Integer noSeat = 0;
+        assertNotEquals(noSeat, passenger1.getSeatNumber());
+
+    }
+
+    @Test
+    public void canAddMultipleSeatNumberToPassengers(){
+        //Given we have  a flight
+        assertNotNull(flight2);
+        //AND we have 3 passengers in the flight
+        assertNotNull(passenger1);
+        assertNotNull(passenger2);
+        assertNotNull(passenger3);
+        //When we add a seat to passengers
+        flight2.addPassenger(passenger1);
+        flight2.addPassenger(passenger2);
+        flight2.addPassenger(passenger3);
+        //Then the passengers should all have seats
+        Integer noSeat = 0;
+        //OR seat 0
+        assertNotEquals(noSeat, passenger1.getSeatNumber());
+        assertNotEquals(noSeat, passenger2.getSeatNumber());
+        assertNotEquals(noSeat, passenger3.getSeatNumber());
+        //AND the total size of the seatNumber array should be 7
+        assertEquals(7, flight2.seatNumberCount());
+    }
+
+    // Just to test it once
+    @Test
+    public void canAddRandomSeatNumberToPassenger(){
+        //Given we have  a flight
+        assertNotNull(flight2);
+        //AND we have a passenger in the flight
+        assertNotNull(passenger1);
+        //When we book a passenger
+        flight2.addPassenger(passenger1);
+        //Then the passengers should all have seats
+        Integer noSeat = 0;
+        //OR seat 0
+        assertNotEquals(noSeat, passenger1.getSeatNumber());
+        //AND the total size of the seatNumber array should be 7
+        assertEquals(9, flight2.seatNumberCount());
+    }
 
 }
