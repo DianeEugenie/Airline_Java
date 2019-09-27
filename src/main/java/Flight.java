@@ -33,6 +33,8 @@ public class Flight {
         }
     }
 
+
+
     public int checkAvailableSeats() {
         return this.plane.getTotalCapacity() - this.passengerCount();
     }
@@ -56,6 +58,7 @@ public class Flight {
         return totalBags;
 
     }
+
 
 
 
@@ -109,5 +112,16 @@ public class Flight {
     }
 
 
+    public ArrayList<Integer> getSeatNumbers() {
+        ArrayList<Integer> seatNumbers = new ArrayList<Integer>();
+        Integer seatNumber = 1;
 
+        for (int i = 0; i < this.maxCapacityForFlight() ; i++) {
+            seatNumbers.add(seatNumber);
+            seatNumber++;
+        }
+
+        return seatNumbers;
+
+    }
 }

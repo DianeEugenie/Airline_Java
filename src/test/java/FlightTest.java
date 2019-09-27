@@ -1,19 +1,21 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class FlightTest {
 
     Flight flight;
+    Flight flight2;
     Passenger passenger1;
     Passenger passenger2;
     Passenger passenger3;
     Plane plane;
+    Plane plane2;
     Date departureTime;
 
     @Before
@@ -25,6 +27,13 @@ public class FlightTest {
                 "CC100",
                 Airport.AMS,
                 Airport.EDI,
+                departureTime
+        );
+        plane2 = new Plane(PlaneType.CODECLAN400);
+        flight2 = new Flight(plane2,
+                "CC400",
+                Airport.LAX,
+                Airport.AMS,
                 departureTime
         );
 
@@ -164,5 +173,40 @@ public class FlightTest {
         //Then the passenger should have flight Number CC100
         assertEquals("CC100", flight.getPassengers().get(0).getFlightNumber());
     }
+
+    @Test
+    public void canGenerateArrayOfSeatNumbers(){
+        //Given we have  a flight
+        assertNotNull(flight2);
+        //When we generate the seat number array
+        ArrayList<Integer> seatNumbers = flight2.getSeatNumbers();
+        //Then we should have an array of size 10
+        int total = 10;
+        assertEquals(total, seatNumbers.size());
+        //And it should start at 1
+        Integer firstSeat = 1;
+        assertEquals(firstSeat, seatNumbers.get(0));
+        //AND end at 10
+        Integer lastSeat = 10;
+        assertEquals(lastSeat, seatNumbers.get(9));
+
+    }
+
+//    @Test
+//    public void canAddRandomSeatNumberToPassenger(){
+//        //Given we have  a flight
+//        assertNotNull(flight2);
+//        //AND we have 3 passengers in the flight
+//        assertNotNull(passenger1);
+//        assertNotNull(passenger2);
+//        assertNotNull(passenger3);
+//        //When we add a seat to a passenger
+//        flight.addPassenger(passenger1);
+//        flight.addPassenger(passenger2);
+//        flight.addPassenger(passenger3);
+//        //Then the passenger should have a seat
+//        assertNotEquals(1, passenger1.getSeatNumber());
+    //    assertNotEquals(0, passenger1.getSeatNumber());
+//    }
 
 }
