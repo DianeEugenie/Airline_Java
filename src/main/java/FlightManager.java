@@ -12,6 +12,14 @@ public class FlightManager {
         return this.flight.maxWeightAllowance();
     }
 
-    
+    public int maxBagWeightPerPassenger() {
+        return this.maxBagWeight() / this.flight.maxCapacityForFlight();
+    }
+
+//    public int
+
+
+
+
 
 }

@@ -109,4 +109,15 @@ public class FlightTest {
         assertEquals(50, maxWeightAllowance);
     }
 
+    @Test
+    public void canGetMaxCapacityForFlight(){
+        //Given we have a flight
+        assertNotNull(flight);
+        //When we check max capacity
+        int maxCapacityForFlight = flight.maxCapacityForFlight();
+        //Then we get back 2
+        assertEquals(2, maxCapacityForFlight);
+
+    }
+
 }

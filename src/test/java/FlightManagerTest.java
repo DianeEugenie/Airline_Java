@@ -30,7 +30,7 @@ public class FlightManagerTest {
     }
 
     @Test
-    public void canCalculateMaxBagWeightPerPassenger(){
+    public void cangetMaxBagWeightForBags(){
         //Given we have a flight
         assertNotNull(flight);
         //When we calculate the max bag weight
@@ -38,7 +38,19 @@ public class FlightManagerTest {
         //Then we should get 250 back
         assertEquals(250, maxBagWeight);
 
-
     }
+
+    @Test
+    public void canCalculateMaxBagWeightPerPassenger() {
+        //Given we have a flight
+        assertNotNull(flight);
+        //When we calculate max bag weight per person
+        int maxBagWeightPerPerson = flightManager.maxBagWeightPerPassenger();
+        //Then we should get back 125
+        assertEquals(125, maxBagWeightPerPerson);
+    }
+
+    @Test
+    public void canCheckHowMuchBagWeight
 
 }

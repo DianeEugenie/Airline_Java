@@ -33,9 +33,12 @@ public class Flight {
     }
 
     public int maxWeightAllowance() {
-        return this.plane.getPlaneWeight() / this.plane.getTotalCapacity();
+        return this.plane.getPlaneWeight() / 2;
     }
 
+    public int maxCapacityForFlight() {
+        return this.plane.getTotalCapacity();
+    }
 
 
     //GETTERS AND SETTERS
