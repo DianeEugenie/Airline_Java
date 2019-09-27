@@ -10,7 +10,6 @@ public class FlightTest {
     Passenger passenger1;
     Passenger passenger2;
     Plane plane;
-    PlaneType planeType;
 
     @Before
     public void before(){
@@ -21,6 +20,9 @@ public class FlightTest {
                 Airport.EDI,
                 "12:00"
         );
+
+        passenger1 = new Passenger("Gillian", 2);
+        passenger2 = new Passenger("Toby", 2);
     }
 
 
@@ -33,6 +35,34 @@ public class FlightTest {
         assertEquals(2, this.plane.getTotalCapacity());
         //AND there should be no passengers on the plane
         assertEquals(0, flight.passengerCount());
+    }
+
+    @Test
+    public void planeHasDestinationAndDeparture(){
+        //Given we have a plane
+        assertNotNull(plane);
+        //AND a flight
+        assertNotNull(flight);
+        //When
+        //Then the destination should return Edinburgh
+        assertEquals("Edinburgh", flight.getDestination().getFullName());
+        //AND the departure airport should return Amsterdam
+        assertEquals("Amsterdam", flight.getDeparture().getFullName());
+    }
+
+    @Test
+    public void planeCanAddPassenger(){
+        //Given we have a plane
+        assertNotNull(plane);
+        //AND a flight
+        assertNotNull(flight);
+        //AND we have a passenger
+        assertNotNull(passenger1);
+        //When we add the passenger to the plane
+        flight.addPassenger(passenger1);
+        //Then the passengerCount should be 1
+        assertEquals(1, flight.passengerCount());
+
     }
 
 }

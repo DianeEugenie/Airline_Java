@@ -22,7 +22,17 @@ public class Flight {
         return this.passengers.size();
     }
 
-    
+    public void addPassenger(Passenger passenger) {
+        if (this.passengerCount() < plane.getTotalCapacity()) {
+            this.passengers.add(passenger);
+        }
+    }
+
+
+
+
+
+
 
     //GETTERS AND SETTERS
     public Plane getPlane() {
@@ -72,4 +82,6 @@ public class Flight {
     public void setPassengers(ArrayList<Passenger> passengers) {
         this.passengers = passengers;
     }
+
+
 }
