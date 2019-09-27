@@ -230,6 +230,23 @@ public class FlightTest {
         assertEquals(7, flight2.seatNumberCount());
     }
 
+    @Test
+    public void cannotBookPassengerToAFlightTwice(){
+        //Given we have  a flight
+        assertNotNull(flight2);
+        //AND we have a passenger in the flight
+        assertNotNull(passenger1);
+        //When we add a seat to passengers
+        flight2.addPassenger(passenger1);
+        flight2.addPassenger(passenger1);
+        //Then the passenger should have a seat
+        Integer noSeat = 0;
+        //OR seat 0
+        assertNotEquals(noSeat, passenger1.getSeatNumber());
+        //AND the total size of the seatNumber array should still be 9;
+        assertEquals(9, flight2.seatNumberCount());
+    }
+
     // Just to test it once
     @Test
     public void canAddRandomSeatNumberToPassenger(){

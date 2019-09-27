@@ -34,7 +34,7 @@ public class Flight {
             this.generateSeatNumbers();
         }
 
-        if (this.passengerCount() < plane.getTotalCapacity()) {
+        if (this.passengerCount() < plane.getTotalCapacity() && !this.passengers.contains(passenger)) {
             this.passengers.add(passenger);
             passenger.setFlightNumber(this.flightNumber);
 
