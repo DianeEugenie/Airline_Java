@@ -117,6 +117,22 @@ public class FlightTest {
         int maxCapacityForFlight = flight.maxCapacityForFlight();
         //Then we get back 2
         assertEquals(2, maxCapacityForFlight);
+    }
+
+    @Test
+    public void canGetNumberOfTotalBags(){
+        //Given we have a flight
+        assertNotNull(flight);
+        //AND there are two passengers on the flight
+        assertNotNull(passenger1);
+        assertNotNull(passenger2);
+        flight.addPassenger(passenger1);
+        flight.addPassenger(passenger2);
+        //AND the passengers have a total of 4 bags
+        //When we check total of bags
+        int totalPassengerBags = flight.getTotalBagCount();
+        //Then we get returned 4
+        assertEquals(4, totalPassengerBags);
 
     }
 

@@ -51,6 +51,20 @@ public class FlightManagerTest {
     }
 
     @Test
-    public void canCheckHowMuchBagWeight
+    public void canCheckHowMuchBagWeightBookedByAllPassenger() {
+        //Given we have a flight
+        assertNotNull(flight);
+        //AND there are two passengers booked into the flight
+        flight.addPassenger(passenger1);
+        flight.addPassenger(passenger2);
+        //AND each bag is 25 kgs
+        //When we check total bags weight of all passengers
+        int totalBagWeight = flightManager.totalBagWeight();
+        //Then totalBagWeight should be 4 x 25 = 100
+        assertEquals(100, totalBagWeight);
+    }
+
+    @Test
+    publi
 
 }

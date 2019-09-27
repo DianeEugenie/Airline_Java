@@ -40,6 +40,22 @@ public class Flight {
         return this.plane.getTotalCapacity();
     }
 
+    public int getTotalBagCount() {
+        int totalBags = 0;
+
+        for (Passenger passenger: this.passengers) {
+            int noOfBags = passenger.getNoOfBags();
+            totalBags += noOfBags;
+        }
+
+        return totalBags;
+
+    }
+
+
+
+
+
 
     //GETTERS AND SETTERS
     public Plane getPlane() {
