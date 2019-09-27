@@ -28,7 +28,9 @@ public class Flight {
         }
     }
 
-
+    public int checkAvailableSeats() {
+        return this.plane.getTotalCapacity() - this.passengerCount();
+    }
 
 
 

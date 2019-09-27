@@ -9,6 +9,7 @@ public class FlightTest {
     Flight flight;
     Passenger passenger1;
     Passenger passenger2;
+    Passenger passenger3;
     Plane plane;
 
     @Before
@@ -23,6 +24,7 @@ public class FlightTest {
 
         passenger1 = new Passenger("Gillian", 2);
         passenger2 = new Passenger("Toby", 2);
+        passenger3 = new Passenger("King Kong", 5);
     }
 
 
@@ -58,11 +60,43 @@ public class FlightTest {
         assertNotNull(flight);
         //AND we have a passenger
         assertNotNull(passenger1);
-        //When we add the passenger to the plane
+        //When we add the passenger to the flight
         flight.addPassenger(passenger1);
         //Then the passengerCount should be 1
         assertEquals(1, flight.passengerCount());
+    }
 
+    @Test
+    public void planeCannotAddMorePassengersThanMaxCapacity(){
+        //Given we have a plane
+        assertNotNull(plane);
+        //AND a flight
+        assertNotNull(flight);
+        //AND we have added two passengers
+        assertNotNull(passenger1);
+        assertNotNull(passenger2);
+        flight.addPassenger(passenger1);
+        flight.addPassenger(passenger2);
+        //When we add a third passenger to the flight
+        flight.addPassenger(passenger3);
+        //Then the passengerCount should still be 2;
+        assertEquals(2, flight.passengerCount());
+    }
+
+    @Test
+    public void canCheckSeatAvailability(){
+        //Given we have a plane
+        assertNotNull(plane);
+        //AND a flight
+        assertNotNull(flight);
+        //AND we have a passenger
+        assertNotNull(passenger1);
+        //AND the passenger has been added to the flight
+        flight.addPassenger(passenger1);
+        //When we check the availability
+        int seatsAvailable = flight.checkAvailableSeats();
+        //Then the available seats should be 1
+        assertEquals(1, seatsAvailable);
     }
 
 }
