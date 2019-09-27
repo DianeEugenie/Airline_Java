@@ -29,7 +29,7 @@ public class FlightTest {
 
 
     @Test
-    public void planeStartsEmpty(){
+    public void startsEmpty(){
         //Given we have a plane
         assertNotNull(plane);
         //When no seats have been booked
@@ -40,7 +40,7 @@ public class FlightTest {
     }
 
     @Test
-    public void planeHasDestinationAndDeparture(){
+    public void hasDestinationAndDeparture(){
         //Given we have a plane
         assertNotNull(plane);
         //AND a flight
@@ -53,7 +53,7 @@ public class FlightTest {
     }
 
     @Test
-    public void planeCanAddPassenger(){
+    public void canAddPassenger(){
         //Given we have a plane
         assertNotNull(plane);
         //AND a flight
@@ -67,7 +67,7 @@ public class FlightTest {
     }
 
     @Test
-    public void planeCannotAddMorePassengersThanMaxCapacity(){
+    public void cannotAddMorePassengersThanMaxCapacity(){
         //Given we have a plane
         assertNotNull(plane);
         //AND a flight
@@ -97,6 +97,16 @@ public class FlightTest {
         int seatsAvailable = flight.checkAvailableSeats();
         //Then the available seats should be 1
         assertEquals(1, seatsAvailable);
+    }
+
+    @Test
+    public void canGetMaxBagAllowancePerPassenger(){
+        //Given we have a flight
+        assertNotNull(flight);
+        //When we check max allowance
+        int maxWeightAllowance = flight.maxWeightAllowance();
+        //Then we get back is 50
+        assertEquals(50, maxWeightAllowance);
     }
 
 }

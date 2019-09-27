@@ -1,7 +1,7 @@
 public enum PlaneType {
 
     CODECLAN100(2, 100),
-    CODECLAN200(2, 200),
+    CODECLAN200(2, 500),
     CODECLAN300(5, 300),
     CODECLAN400(10, 400),
     CODECLAN500(5, 500);

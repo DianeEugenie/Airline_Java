@@ -32,7 +32,9 @@ public class Flight {
         return this.plane.getTotalCapacity() - this.passengerCount();
     }
 
-
+    public int maxWeightAllowance() {
+        return this.plane.getPlaneWeight() / this.plane.getTotalCapacity();
+    }
 
 
 
@@ -84,6 +86,7 @@ public class Flight {
     public void setPassengers(ArrayList<Passenger> passengers) {
         this.passengers = passengers;
     }
+
 
 
 }
