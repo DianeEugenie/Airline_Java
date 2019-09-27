@@ -14,6 +14,9 @@ public class FlightTest {
     Passenger passenger1;
     Passenger passenger2;
     Passenger passenger3;
+    Passenger passenger4;
+    Passenger passenger5;
+    Passenger passenger6;
     Plane plane;
     Plane plane2;
     Date departureTime;
@@ -40,6 +43,9 @@ public class FlightTest {
         passenger1 = new Passenger("Gillian", 2);
         passenger2 = new Passenger("Toby", 2);
         passenger3 = new Passenger("King Kong", 5);
+        passenger4 = new Passenger("Luna", 3);
+        passenger5 = new Passenger("Dobby", 2);
+        passenger6 = new Passenger("Kitty", 4);
     }
 
 
@@ -247,7 +253,7 @@ public class FlightTest {
         assertEquals(9, flight2.seatNumberCount());
     }
 
-    // Just to test it once
+    // Just to test it once and checked in debugger
     @Test
     public void canAddRandomSeatNumberToPassenger(){
         //Given we have  a flight
@@ -263,5 +269,7 @@ public class FlightTest {
         //AND the total size of the seatNumber array should be 7
         assertEquals(9, flight2.seatNumberCount());
     }
+
+
 
 }

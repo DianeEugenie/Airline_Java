@@ -1,20 +1,26 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class FlightManagerTest {
 
     FlightManager flightManager;
+    FlightManager flightManager2;
     Flight flight;
     Passenger passenger1;
     Passenger passenger2;
     Passenger passenger3;
+    Passenger passenger4;
+    Passenger passenger5;
+    Passenger passenger6;
     Plane plane;
+    Plane plane2;
+    Flight flight2;
     Date date;
 
     @Before
@@ -29,13 +35,27 @@ public class FlightManagerTest {
         );
         flightManager = new FlightManager("Pixel", flight);
 
+        plane2 = new Plane(PlaneType.CODECLAN400);
+        flight2 = new Flight(plane2,
+                "CC400",
+                Airport.LAX,
+                Airport.AMS,
+                date
+        );
+
+        flightManager2 = new FlightManager("Domino", flight2);
+
         passenger1 = new Passenger("Gillian", 2);
         passenger2 = new Passenger("Toby", 2);
         passenger3 = new Passenger("King Kong", 5);
+        passenger4 = new Passenger("Luna", 3);
+        passenger5 = new Passenger("Dobby", 2);
+        passenger6 = new Passenger("Kitty", 4);
+
     }
 
     @Test
-    public void cangetMaxBagWeightForBags(){
+    public void canGetMaxBagWeightForBags(){
         //Given we have a flight
         assertNotNull(flight);
         //When we calculate the max bag weight
@@ -81,6 +101,44 @@ public class FlightManagerTest {
         int totalBagWeightLeft = flightManager.bagCapacityLeft();
         //Then totalBagWeight should be 4 x 25 = 100
         assertEquals(150, totalBagWeightLeft);
+    }
+
+    @Test
+    public void canSortPassengersBySeatNumber(){
+        //Given we have a flight
+        assertNotNull(flight2);
+        //AND there are five passengers booked into the flight
+        assertNotNull(passenger1);
+        assertNotNull(passenger2);
+        assertNotNull(passenger3);
+        assertNotNull(passenger4);
+        assertNotNull(passenger5);
+        flight2.addPassenger(passenger1);
+        flight2.addPassenger(passenger2);
+        flight2.addPassenger(passenger3);
+        flight2.addPassenger(passenger4);
+        flight2.addPassenger(passenger5);
+        //When we sort passengers by seat numbers
+        flightManager2.sortPassengers();
+        //Then the array of passengers should increment per seat number
+        //Grab all the seat numbers of all the passengers in order
+        Integer seatNumberP1 = flight2.getPassengers().get(0).getSeatNumber();
+        Integer seatNumberP2 = flight2.getPassengers().get(1).getSeatNumber();
+        Integer seatNumberP3 = flight2.getPassengers().get(2).getSeatNumber();
+        Integer seatNumberP4 = flight2.getPassengers().get(3).getSeatNumber();
+        Integer seatNumberP5 = flight2.getPassengers().get(4).getSeatNumber();
+        //Check if every number that follows is bigger than the one that came before
+        Integer subtract1 = seatNumberP2 - seatNumberP1;
+        Integer subtract2 = seatNumberP3 - seatNumberP2;
+        Integer subtract3 = seatNumberP4 - seatNumberP3;
+        Integer subtract4 = seatNumberP5 - seatNumberP4;
+        assertTrue(subtract1 > 0);
+        assertTrue(subtract2 > 0);
+        assertTrue(subtract3 > 0);
+        assertTrue(subtract4 > 0);
+        //AND flight count remains 5
+        assertEquals(5, flight2.passengerCount());
+
     }
 
 }
