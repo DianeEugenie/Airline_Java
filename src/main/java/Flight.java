@@ -29,6 +29,7 @@ public class Flight {
     public void addPassenger(Passenger passenger) {
         if (this.passengerCount() < plane.getTotalCapacity()) {
             this.passengers.add(passenger);
+            passenger.setFlightNumber(this.flightNumber);
         }
     }
 

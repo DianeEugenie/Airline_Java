@@ -27,4 +27,12 @@ public class Passenger {
     public void allocateSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
     }
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
 }

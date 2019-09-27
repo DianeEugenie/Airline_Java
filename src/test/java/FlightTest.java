@@ -153,4 +153,16 @@ public class FlightTest {
         assertEquals(11, depDate.getMonth());
     }
 
+    @Test
+    public void canAddFlightNumberToPassenger(){
+        //Given we have a flight
+        assertNotNull(flight);
+        //AND we have a passenger
+        assertNotNull(passenger1);
+        //When we add passenger to flight
+        flight.addPassenger(passenger1);
+        //Then the passenger should have flight Number CC100
+        assertEquals("CC100", flight.getPassengers().get(0).getFlightNumber());
+    }
+
 }
