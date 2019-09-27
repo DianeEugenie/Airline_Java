@@ -1,6 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -11,15 +14,18 @@ public class FlightTest {
     Passenger passenger2;
     Passenger passenger3;
     Plane plane;
+    Date departureTime;
 
     @Before
     public void before(){
+        departureTime = new Date(2019, 11, 27, 19, 00 );
+        //departureTime = new Date(2019, 11, 27);
         plane = new Plane(PlaneType.CODECLAN100);
         flight = new Flight(plane,
                 "CC100",
                 Airport.AMS,
                 Airport.EDI,
-                "12:00"
+                departureTime
         );
 
         passenger1 = new Passenger("Gillian", 2);
@@ -134,6 +140,17 @@ public class FlightTest {
         //Then we get returned 4
         assertEquals(4, totalPassengerBags);
 
+    }
+
+    @Test
+    public void canGetDateOfFlight(){
+        //Given we have a flight
+        assertNotNull(flight);
+        //When we check the date
+        Date depDate = flight.getDepartureTime();
+        //Then it should return today
+        assertEquals(departureTime, depDate);
+        assertEquals(11, depDate.getMonth());
     }
 
 }

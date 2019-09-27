@@ -1,6 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -12,15 +15,17 @@ public class FlightManagerTest {
     Passenger passenger2;
     Passenger passenger3;
     Plane plane;
+    Date date;
 
     @Before
     public void before(){
+        date = new Date(119 + 1900, 11, 27, 19, 00 );
         plane = new Plane(PlaneType.CODECLAN200);
         flight = new Flight(plane,
                 "CC200",
                 Airport.EDI,
                 Airport.LAX,
-                "19:00"
+                date
         );
         flightManager = new FlightManager("Pixel", flight);
 
