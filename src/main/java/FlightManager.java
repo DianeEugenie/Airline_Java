@@ -50,15 +50,10 @@ public class FlightManager {
         }
     }
 
-    public ArrayList<Passenger> getSortedPassengers(){
-        this.sortPassengers();
-        return this.flight.getPassengers();
-    }
-
-
     public Passenger findPassengerAtSeat(Integer seatNumber) {
 
-        ArrayList<Passenger> sortedPassengers = this.getSortedPassengers();
+        this.sortPassengers();
+        ArrayList<Passenger> sortedPassengers = this.flight.getPassengers();
         Passenger foundPassenger = null;
 
         while (foundPassenger == null) {

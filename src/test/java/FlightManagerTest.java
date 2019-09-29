@@ -158,6 +158,8 @@ public class FlightManagerTest {
         //AND we have a flight manager;
         assertNotNull(flightManager2);
         //AND as a test add seat number higher than 10
+        //as no other passenger should have a number higher than 10
+        assertTrue(flight2.maxCapacityForFlight() <= 10);
         Integer number = 15;
         //AND allocate that to a random passenger
         passenger1.allocateSeatNumber(number);

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
@@ -9,7 +8,6 @@ public class Flight {
     private String flightNumber;
     private Airport departure;
     private Airport destination;
-   // private String departureTime;
     private Date departureTime;
     private ArrayList<Passenger> passengers;
     private ArrayList<Integer> seatNumbers;
@@ -20,7 +18,6 @@ public class Flight {
         this.departure = departure;
         this.destination = destination;
         this.departureTime = departureTime;
-       // this.departureTime = departureTime;
         this.passengers = new ArrayList<Passenger>();
         this.seatNumbers = new ArrayList<Integer>();
     }
@@ -30,20 +27,45 @@ public class Flight {
     }
 
     public void addPassenger(Passenger passenger) {
+        // if passengers are not booked get, generate the seat numbers
         if (this.passengerCount() == 0) {
             this.generateSeatNumbers();
         }
 
-        if (this.passengerCount() < plane.getTotalCapacity() && !this.passengers.contains(passenger)) {
+        int maxWeightAllowance = this.maxWeightAllowance();
+        int totalBagCount = 1;
+
+            // if the passenger count is smaller than total plane capacity
+            //AND the passenger list does not contain this passenger
+        if (this.passengerCount() < plane.getTotalCapacity() &&
+                !this.passengers.contains(passenger) &&
+                (maxWeightAllowance / totalBagCount > 25)) {
+
+            //add passenger
             this.passengers.add(passenger);
+
+            //when passengerCount is 1 reset totalBagCount to the actual bag count
+            if (this.passengerCount() == 1) {
+                totalBagCount = this.passengers.get(0).getNoOfBags();
+            }
+
+            //add number of bags to total bag count
+            totalBagCount += passenger.getNoOfBags();
+
+            //set flight number to passenger
             passenger.setFlightNumber(this.flightNumber);
 
+            //shuffle seat numbers
             Collections.shuffle(this.seatNumbers);
 
+            //remove seat number from the array
             Integer seatNumber = this.removeSeatNumber();
+
+            //allocate seat number to passenger
             passenger.allocateSeatNumber(seatNumber);
         }
     }
+
 
 
     public int checkAvailableSeats() {
