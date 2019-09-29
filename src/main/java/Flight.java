@@ -33,24 +33,25 @@ public class Flight {
         }
 
         int maxWeightAllowance = this.maxWeightAllowance();
-        int totalBagCount = 1;
+        int totalBagsAtPresent = passenger.getNoOfBags();
+        int totalBagCount = this.getTotalBagCount();
 
             // if the passenger count is smaller than total plane capacity
             //AND the passenger list does not contain this passenger
         if (this.passengerCount() < plane.getTotalCapacity() &&
                 !this.passengers.contains(passenger) &&
-                (maxWeightAllowance / totalBagCount > 25)) {
-
-            //add passenger
-            this.passengers.add(passenger);
+                maxWeightAllowance >= ((totalBagCount + totalBagsAtPresent) * 25)) {
 
             //when passengerCount is 1 reset totalBagCount to the actual bag count
             if (this.passengerCount() == 1) {
                 totalBagCount = this.passengers.get(0).getNoOfBags();
             }
 
+            //add passenger
+            this.passengers.add(passenger);
+
             //add number of bags to total bag count
-            totalBagCount += passenger.getNoOfBags();
+            totalBagCount = this.getTotalBagCount();
 
             //set flight number to passenger
             passenger.setFlightNumber(this.flightNumber);

@@ -47,10 +47,10 @@ public class FlightManagerTest {
 
         passenger1 = new Passenger("Gillian", 2);
         passenger2 = new Passenger("Toby", 2);
-        passenger3 = new Passenger("King Kong", 5);
-        passenger4 = new Passenger("Luna", 3);
-        passenger5 = new Passenger("Dobby", 2);
-        passenger6 = new Passenger("Kitty", 4);
+        passenger3 = new Passenger("King Kong", 1);
+        passenger4 = new Passenger("Luna", 1);
+        passenger5 = new Passenger("Dobby", 1);
+        passenger6 = new Passenger("Kitty", 1);
 
     }
 

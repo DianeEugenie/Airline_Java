@@ -17,6 +17,8 @@ public class FlightTest {
     Passenger passenger4;
     Passenger passenger5;
     Passenger passenger6;
+    Passenger passenger7;
+    Passenger passenger8;
     Plane plane;
     Plane plane2;
     Date departureTime;
@@ -42,10 +44,12 @@ public class FlightTest {
 
         passenger1 = new Passenger("Gillian", 2);
         passenger2 = new Passenger("Toby", 2);
-        passenger3 = new Passenger("King Kong", 5);
+        passenger3 = new Passenger("King Kong", 1);
         passenger4 = new Passenger("Luna", 3);
         passenger5 = new Passenger("Dobby", 2);
-        passenger6 = new Passenger("Kitty", 4);
+        passenger6 = new Passenger("Kitty", 2);
+        passenger7 = new Passenger("Gillian", 1);
+        passenger8 = new Passenger("Toby", 1);
     }
 
 
@@ -96,12 +100,28 @@ public class FlightTest {
         //AND we have added two passengers
         assertNotNull(passenger1);
         assertNotNull(passenger2);
-        flight.addPassenger(passenger1);
-        flight.addPassenger(passenger2);
+        flight.addPassenger(passenger7);
+        flight.addPassenger(passenger8);
         //When we add a third passenger to the flight
         flight.addPassenger(passenger3);
         //Then the passengerCount should still be 2;
         assertEquals(2, flight.passengerCount());
+    }
+
+    @Test
+    public void cannotAddMorePassengersIfMagBagCapacityHasBeenReached(){
+        //Given we have a plane
+        assertNotNull(plane);
+        //AND a flight
+        assertNotNull(flight);
+        //AND we have added a passenger
+        assertNotNull(passenger1);
+        flight.addPassenger(passenger1);
+        //When we add a passenger to the flight with too many bags
+        // max bag allowance is 50 and each bag is 25)
+        flight.addPassenger(passenger2);
+        //Then the passengerCount should still be 1
+        assertEquals(1, flight.passengerCount());
     }
 
     @Test
@@ -121,7 +141,7 @@ public class FlightTest {
     }
 
     @Test
-    public void canGetMaxBagAllowancePerPassenger(){
+    public void canGetMaxBagAllowance(){
         //Given we have a flight
         assertNotNull(flight);
         //When we check max allowance
@@ -145,15 +165,15 @@ public class FlightTest {
         //Given we have a flight
         assertNotNull(flight);
         //AND there are two passengers on the flight
-        assertNotNull(passenger1);
-        assertNotNull(passenger2);
-        flight.addPassenger(passenger1);
-        flight.addPassenger(passenger2);
-        //AND the passengers have a total of 4 bags
+        assertNotNull(passenger7);
+        assertNotNull(passenger8);
+        flight.addPassenger(passenger7);
+        flight.addPassenger(passenger8);
+        //AND the passengers have a total of 2 bags
         //When we check total of bags
         int totalPassengerBags = flight.getTotalBagCount();
-        //Then we get returned 4
-        assertEquals(4, totalPassengerBags);
+        //Then we get returned 2
+        assertEquals(2, totalPassengerBags);
 
     }
 
