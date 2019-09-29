@@ -24,7 +24,7 @@ public class Passenger {
         this.flightNumber = flightNo;
     }
 
-    public void allocateSeatNumber(int seatNumber) {
+    public void allocateSeatNumber(Integer seatNumber) {
         this.seatNumber = seatNumber;
     }
 

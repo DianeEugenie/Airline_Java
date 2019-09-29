@@ -138,6 +138,33 @@ public class FlightManagerTest {
         assertTrue(subtract4 > 0);
         //AND flight count remains 5
         assertEquals(5, flight2.passengerCount());
+    }
+
+    @Test
+    public void canFindPassengerBySeatNumber(){
+        //Given we have a flight
+        assertNotNull(flight2);
+        //AND add passengers to the flight
+        assertNotNull(passenger1);
+        assertNotNull(passenger2);
+        assertNotNull(passenger3);
+        assertNotNull(passenger4);
+        assertNotNull(passenger5);
+        flight2.addPassenger(passenger1);
+        flight2.addPassenger(passenger2);
+        flight2.addPassenger(passenger3);
+        flight2.addPassenger(passenger4);
+        flight2.addPassenger(passenger5);
+        //AND we have a flight manager;
+        assertNotNull(flightManager2);
+        //AND as a test add seat number higher than 10
+        Integer number = 15;
+        //AND allocate that to a random passenger
+        passenger1.allocateSeatNumber(number);
+        //When we find passenger by seat number
+        Passenger foundPassenger = flightManager2.findPassengerAtSeat(number);
+        //Then we should find passenger1
+        assertEquals(passenger1, foundPassenger);
 
     }
 

@@ -49,7 +49,48 @@ public class FlightManager {
             }
         }
     }
+
+    public ArrayList<Passenger> getSortedPassengers(){
+        this.sortPassengers();
+        return this.flight.getPassengers();
+    }
+
+
+    public Passenger findPassengerAtSeat(Integer seatNumber) {
+
+        ArrayList<Passenger> sortedPassengers = this.getSortedPassengers();
+        Passenger foundPassenger = null;
+
+        while (foundPassenger == null) {
+            int middle = 0;
+
+            if (sortedPassengers.size() > 1) {
+                middle = (int) Math.ceil((double) sortedPassengers.size() / 2);
+            }
+
+            Integer middleSeatNumber = sortedPassengers.get(middle).getSeatNumber();
+
+            if (seatNumber.equals(middleSeatNumber)) {
+                foundPassenger = sortedPassengers.get(middle);
+            }
+
+
+            if (seatNumber < middleSeatNumber) {
+                sortedPassengers = new ArrayList<Passenger>(sortedPassengers.subList(0, middle));
+            } else {
+                sortedPassengers = new ArrayList<Passenger>(sortedPassengers.subList(middle + 1, sortedPassengers.size()));
+            }
+
+        }
+
+        return foundPassenger;
+    }
+
+
 }
+
+
+
 
 
 
