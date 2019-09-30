@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static org.junit.Assert.*;
 
@@ -21,11 +22,11 @@ public class FlightManagerTest {
     Plane plane;
     Plane plane2;
     Flight flight2;
-    Date date;
+    GregorianCalendar date;
 
     @Before
     public void before(){
-        date = new Date(119 + 1900, 11, 27, 19, 00 );
+        date = new GregorianCalendar(119 + 1900, 11, 27, 19, 00 );
         plane = new Plane(PlaneType.CODECLAN200);
         flight = new Flight(plane,
                 "CC200",

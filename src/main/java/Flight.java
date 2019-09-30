@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Flight {
 
@@ -8,11 +8,11 @@ public class Flight {
     private String flightNumber;
     private Airport departure;
     private Airport destination;
-    private Date departureTime;
+    private GregorianCalendar departureTime;
     private ArrayList<Passenger> passengers;
     private ArrayList<Integer> seatNumbers;
 
-    public Flight(Plane plane, String flightNumber, Airport departure, Airport destination, Date departureTime){
+    public Flight(Plane plane, String flightNumber, Airport departure, Airport destination, GregorianCalendar departureTime){
         this.plane = plane;
         this.flightNumber = flightNumber;
         this.departure = departure;
@@ -125,9 +125,6 @@ public class Flight {
 
 
 
-
-
-
     //GETTERS AND SETTERS
     public Plane getPlane() {
         return plane;
@@ -157,7 +154,7 @@ public class Flight {
         return destination;
     }
 
-    public Date getDepartureTime() {
+    public GregorianCalendar getDepartureTime() {
         return departureTime;
     }
 

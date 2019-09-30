@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static org.junit.Assert.*;
 
@@ -21,11 +22,11 @@ public class FlightTest {
     Passenger passenger8;
     Plane plane;
     Plane plane2;
-    Date departureTime;
+    GregorianCalendar departureTime;
 
     @Before
     public void before(){
-        departureTime = new Date(2019, 11, 27, 19, 00 );
+        departureTime = new GregorianCalendar(2019, 11, 27, 19, 00 );
         //departureTime = new Date(2019, 11, 27);
         plane = new Plane(PlaneType.CODECLAN100);
         flight = new Flight(plane,
@@ -182,10 +183,9 @@ public class FlightTest {
         //Given we have a flight
         assertNotNull(flight);
         //When we check the date
-        Date depDate = flight.getDepartureTime();
+        GregorianCalendar depDate = flight.getDepartureTime();
         //Then it should return today
         assertEquals(departureTime, depDate);
-        assertEquals(11, depDate.getMonth());
     }
 
     @Test
